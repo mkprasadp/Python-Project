@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: aqua;
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+span a {
+    display: flex;
+    flex-direction: row;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+span a:hover {
+    text-decoration: underline;
+}
+
+#Sign {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#Sign:hover {
+    background-color: #0056b3;
+}
+</style>
+<div class="container">
+    <h2>Login</h2>
+    {% if error %}
+        <p style="color:red">{{error}}</p>
+    {% endif %}
+    <form action="" method='POST' id='form'>
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="example@gmail.com"/>
+
+        <label for="pass">Password:</label>
+        <input type="password" name="pass" id="pass" placeholder="Password">
+
+        <span>
+            <a href="{% url "Registration" %}">Forgot Password?</a>
+        </span>
+
+        <button onclick="location.href={% url "Home" %}" type='submit' id='Sign'>Sign Up</button>
+    </form>
+</div>
+{% endblock  %}
